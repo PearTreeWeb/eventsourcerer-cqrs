@@ -1,0 +1,20 @@
+{
+    "name": "eventsourcerer/eventsourcerer-cqrs",
+    "description": "Some scaffolding for using CQRS with EventSourcerer",
+    "autoload": {
+        "psr-4": {
+            "EventSourcerer\\EventSourcererCqrs\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "michaelbudd",
+            "email": "michael.budd@peartreeweb.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.5",
+        "eventsourcerer/message-utilities": "dev-main"
+    }
+}
