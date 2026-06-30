@@ -6,5 +6,4 @@ namespace EventSourcerer\EventSourcererCqrs\Stream;
 
 abstract class EventSourcererStreamRepository implements StreamRepository
 {
-
 }
