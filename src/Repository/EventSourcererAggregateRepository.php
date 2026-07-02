@@ -6,19 +6,28 @@ namespace EventSourcerer\EventSourcererCqrs\Repository;
 
 use EventSourcerer\EventSourcererCqrs\Aggregate\Model\AggregateId;
 use EventSourcerer\EventSourcererCqrs\Aggregate\Model\IsAggregate;
+use EventSourcerer\EventSourcererCqrs\Factory\ReinstantiateAggregate;
+use EventSourcerer\EventSourcererCqrs\Stream\StreamRepository;
 use PearTreeWebLtd\EventSourcererMessageUtilities\Model\Checkpoint;
+use PearTreeWebLtd\EventSourcererMessageUtilities\Service\ProvideEventClassPath;
 
 abstract class EventSourcererAggregateRepository implements AggregateRepository
 {
     public function __construct(
         private StreamRepository $streamRepository,
-        private IsAggregate $createBasketAggregate
+        private ReinstantiateAggregate $reinstantiateAggregate,
+        private ProvideEventClassPath $provideEventClassPath,
     ) {}
 
     public function get(AggregateId $id): IsAggregate
     {
-        return $this->createBasketAggregate->fromEvents(
-            $this->streamRepository->get(BasketAggregate::streamId($id), Checkpoint::zero())
+        return $this->reinstantiateAggregate->fromEvents(
+            $this->provideEventClassPath,
+            static::class,
+            $this->streamRepository->get(
+                BasketAggregate::streamId($id),
+                Checkpoint::zero()
+            )
         );
     }
 
