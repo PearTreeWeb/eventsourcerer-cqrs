@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSourcerer\EventSourcererCqrs\Aggregate;
 
-use EventSourcerer\EventSourcererCqrs\Common\IsEvent;
+use PearTreeWebLtd\EventSourcererMessageUtilities\Model\IsEvent;
 
 abstract class Aggregate
 {

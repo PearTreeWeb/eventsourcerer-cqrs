@@ -11,7 +11,7 @@ use EventSourcerer\EventSourcererCqrs\Stream\StreamRepository;
 use PearTreeWebLtd\EventSourcererMessageUtilities\Model\Checkpoint;
 use PearTreeWebLtd\EventSourcererMessageUtilities\Service\ProvideEventClassPath;
 
-abstract class EventSourcererAggregateRepository implements AggregateRepository
+abstract readonly class EventSourcererAggregateRepository implements AggregateRepository
 {
     public function __construct(
         private StreamRepository $streamRepository,
