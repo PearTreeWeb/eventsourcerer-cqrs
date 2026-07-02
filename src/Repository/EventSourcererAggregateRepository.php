@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace EventSourcerer\EventSourcererCqrs\Repository;
 
+use EventSourcerer\EventSourcererCqrs\Aggregate\Model\AggregateId;
+use EventSourcerer\EventSourcererCqrs\Aggregate\Model\IsAggregate;
 use PearTreeWebLtd\EventSourcererMessageUtilities\Model\Checkpoint;
 
 abstract class EventSourcererAggregateRepository implements AggregateRepository
 {
     public function __construct(
         private StreamRepository $streamRepository,
-        private Basket $createBasketAggregate
+        private IsAggregate $createBasketAggregate
     ) {}
 
     public function get(AggregateId $id): IsAggregate
